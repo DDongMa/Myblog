@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+<div class="col-sm-3">
+			{% block article_column %}
+			
+				<h1 class="panel-title">文章类别</h1><hr>
+				<ul class="list-group">
+				{% for category in category_list %}
+					<li class="list-group-item">
+						<span class="badge">{{ category.article_set.all.count }}</span>
+						<a href="/app/category/{{ category.id }}">{{ category.category }}</a>
+					</li>
+				{% endfor %}
+				</ul>
+						
+			{% endblock %}
+									
+</div><!--/Left Column-->
+
+<div class="col-sm-8">
+				
+			<!-- Articles -->
+			{% block center_article %}
+			<h3><a href="/app/article/{{article.id}}">{{ article.title}}</a></h3>
+			<p class="pull-right"><span class="label label-default">{{ article.category}}</span></p>
+			<br>
+			<p> 作者： | 发布时间： {{ article.pub_time }}</p>
+			<p>{{ article.content | safe}}</p>
+			<hr>
+			{% endblock %}
+			
+</div><!--/Center Column-->
